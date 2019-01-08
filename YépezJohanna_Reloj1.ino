@@ -4,17 +4,17 @@
    Fecha:Martes 08/12/2019
    Realizar un Reloj en LCD usando Timer
 */
-#include <LiquidCrystal.h>
-#include <MsTimer2.h>
+#include <LiquidCrystal.h> //librería lcd
+#include <MsTimer2.h> //librería Timer2
 LiquidCrystal lcd (13, 12, 11, 10, 9, 8); //pines RS,E,D4,D5,D6,D7 en Arduino
-int seg = 0;
-int minu = 0;
-int hora = 0;
+int seg = 0; //variable para segundos
+int minu = 0; //variable para minutos
+int hora = 0; //variable para hora
 void setup() {
-  MsTimer2::set(100, rut);
-  MsTimer2::start();
-  lcd.begin(16, 2);
-  lcd.setCursor(0, 0);
+  MsTimer2::set(1000, rut); //programar timer 2
+  MsTimer2::start(); //iniciar timer 2
+  lcd.begin(16, 2); //inicialización lcd
+  lcd.setCursor(0, 0); //mostrar mensaje
   lcd.print("SS:MM:HH");
   lcd.setCursor(0, 1);
   lcd.print("00:00:00");
@@ -23,57 +23,57 @@ void setup() {
 void loop() {
 
 }
-void rut() {
-  seg++;
-  if (seg < 60) {
-    if (seg < 10) {
+void rut() { //clase para timer
+  seg++; //aumnetar segundos
+  if (seg < 60) { //validar hasta 60
+    if (seg < 10) { //imprimir posiciones menores a 10
       lcd.setCursor(0, 1);
       lcd.print("0 ");
       lcd.setCursor(1, 1);
       lcd.print(seg);
-    } else {
+    } else { //imprimir posiciones mayores a 10
       lcd.setCursor(0, 1);
       lcd.print(seg);
     }
-  } else {
-    seg = 0;
-    if (seg == 0) {
+  } else { //reinicio contador segundos
+    seg = 0; //reiniciar variable
+    if (seg == 0) { //reinicio de segundos
       lcd.setCursor(0, 1);
       lcd.print("00");
     }
-    minu++;
-    if (minu < 60) {
-      if (minu < 10) {
+    minu++; //aumentar minutos
+    if (minu < 60) { //validar hasta 60 minutos
+      if (minu < 10) { //imprimir posiciones menores a 10
         lcd.setCursor(2, 1);
         lcd.print(":0 :");
         lcd.setCursor(4, 1);
         lcd.print(minu);
-      } else {
+      } else { //imprimir posiciones mayores a 10
         lcd.setCursor(2, 1);
         lcd.print(":  :");
         lcd.setCursor(3, 1);
         lcd.print(minu);
       }
-    } else {
-      minu = 0;
-      if (minu == 0) {
+    } else { //reiniciar minutos
+      minu = 0; //reiniciar variable
+      if (minu == 0) { //imprimir reinicio
         lcd.setCursor(3, 1);
         lcd.print("00");
       }
-      hora++;
-      if (hora < 24) {
-        if (hora < 10) {
+      hora++; //aumentar hora
+      if (hora < 24) { //validar hasta 24 horas
+        if (hora < 10) { //imprimir posiciones menores a 10
           lcd.setCursor(6, 1);
           lcd.print("0 ");
           lcd.setCursor(7, 1);
           lcd.print(hora);
-        } else {
+        } else { //imprimir posiciones mayores a 10
           lcd.setCursor(6, 1);
           lcd.print(hora);
         }
-      } else {
-        hora = 0;
-        if (hora == 0) {
+      } else { //reinicio hora
+        hora = 0; //reinicio variable
+        if (hora == 0) { //imprimo reinicio
           lcd.setCursor(6, 1);
           lcd.print("00");
         }
