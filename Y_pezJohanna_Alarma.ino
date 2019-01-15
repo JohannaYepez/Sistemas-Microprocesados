@@ -2,7 +2,7 @@
    UTN FICA CIERCOM
    Nombre: Johanna Yépez
    Fecha:Martes 08/12/2019
-   Realizar un Reloj en LCD usando Timer
+   Realizar un Reloj  reloj mostrado en lcd con alarma que sea ingresada por comunicacion serial.
 */
 #include <LiquidCrystal.h>
 #include <MsTimer2.h>
